@@ -1,0 +1,4 @@
+terra-key-ec2
+*.tfstate
+*.tfstate.backup
+.terraform/
