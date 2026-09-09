@@ -1,6 +1,6 @@
 # key pair
 resource "aws_key_pair" "my_key" {
-  key_name   = "terra-key-ec2"
+  key_name   = "${var.env}-terra-key-ec2"
   public_key = file("terra-key-ec2.pub")
 }
 
@@ -12,7 +12,7 @@ resource "aws_default_vpc" "default" {
 
 
 resource "aws_security_group" "my_security_group" {
-    name = "automate-sg"
+    name = "${var.env}-automate-sg"
     description = "this is will open security group"
     vpc_id = aws_default_vpc.default.id #interpolation
     # inbound rules 
@@ -47,7 +47,8 @@ resource "aws_security_group" "my_security_group" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 tags = {
-    Name = "automate-sg"
+             # dev-automate-sg
+    Name = "${var.env}-automate-sg"
 }
   
 }
